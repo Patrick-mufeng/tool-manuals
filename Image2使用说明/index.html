@@ -555,6 +555,15 @@
       line-height: 1.8;
     }
 
+    /* Centered header variant */
+    .features-header .section-title,
+    .features-header .section-desc,
+    .gallery-header .section-title,
+    .gallery-header .section-desc {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     .word-reveal .word {
       display: inline-block;
       opacity: 0;
@@ -872,52 +881,6 @@
       to { transform: translateX(100%); }
     }
 
-    .showcase-img-wrap:hover .showcase-img {
-      box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 60px rgba(201,169,110,0.12);
-    }
-
-    .showcase-img-wrap::after {
-      content: '';
-      position: absolute;
-      bottom: -30%;
-      left: 0;
-      right: 0;
-      height: 60%;
-      background: linear-gradient(to bottom, rgba(201,169,110,0.08), transparent);
-      transform: scaleY(-1);
-      opacity: 0.3;
-      pointer-events: none;
-      filter: blur(20px);
-      border-radius: 6px;
-    }
-
-    .showcase-img-wrap::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        105deg,
-        transparent 40%,
-        rgba(255,255,255,0.08) 50%,
-        transparent 60%
-      );
-      z-index: 2;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-      border-radius: 6px;
-    }
-
-    .showcase-img-wrap:hover::before {
-      opacity: 1;
-      animation: shineSweep 1s ease forwards;
-    }
-
-    @keyframes shineSweep {
-      from { transform: translateX(-100%); }
-      to { transform: translateX(100%); }
-    }
-
     /* ═══════════════════════════════════════
        GALLERY
     ═══════════════════════════════════════ */
@@ -1126,6 +1089,94 @@
       width: 20px;
       height: 20px;
       color: var(--gold);
+    }
+
+    /* ═══════════════════════════════════════
+       FEATURES (New)
+    ═══════════════════════════════════════ */
+    .features {
+      background: var(--bg-warm);
+      padding: 120px 6vw;
+    }
+
+    .features-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--border);
+    }
+
+    .feature-card {
+      background: var(--bg-warm);
+      padding: 40px 36px;
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(201,169,110,0.04), transparent);
+      transition: left 0.8s ease;
+    }
+
+    .feature-card:hover::before { left: 100%; }
+
+    .feature-card:hover {
+      background: var(--surface);
+      transform: translateY(-4px);
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.1);
+      color: var(--gold);
+    }
+
+    .feature-icon {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 16px;
+      color: var(--gold-dim);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .feature-card h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .feature-card p {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .feature-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      background: rgba(201,169,110,0.1);
+      border: 1px solid rgba(201,169,110,0.2);
+      border-radius: 20px;
+      font-size: 0.65rem;
+      color: var(--gold);
+      margin-top: 12px;
+      letter-spacing: 0.05em;
     }
 
     /* ═══════════════════════════════════════
@@ -1343,6 +1394,9 @@
       .cap-grid { grid-template-columns: 1fr; }
       .cap-item { padding: 36px 28px; }
 
+      .features-grid { grid-template-columns: 1fr; }
+      .feature-card { padding: 32px 24px; }
+
       .showcase { grid-template-columns: 1fr; }
       .showcase-visual { min-height: 40vh; order: -1; }
       .showcase-text { padding: 60px 6vw; }
@@ -1377,6 +1431,7 @@
     <a href="#" class="nav-brand">觅图 <span>Image2</span></a>
     <div class="nav-links">
       <a href="#capabilities">功能</a>
+      <a href="#features">新特性</a>
       <a href="#workflow">流程</a>
       <a href="#gallery">展示</a>
       <a href="https://yunwu.ai/register?aff=zM1f" target="_blank" class="nav-cta">注册 API</a>
@@ -1400,7 +1455,7 @@
       <div class="hero-brand">觅图 Image2</div>
       <h1 id="heroTitle">在本地<br>生成无限<em>想象</em></h1>
       <p class="hero-desc">
-        无需安装 Python，无需编写代码。双击启动，浏览器即开即用。基于云雾 API 的本地 AI 文生图工具，数据不出本机。
+        无需安装 Python，无需编写代码。双击启动，浏览器即开即用。基于云雾 API 的本地 AI 图片生成工具，数据不出本机。
       </p>
       <div class="hero-cta-group">
         <a href="#capabilities" class="hero-cta">
@@ -1465,6 +1520,44 @@
         <div class="cap-num">06</div>
         <h3>实时监控</h3>
         <p>查看每次请求的完整 JSON 数据，请求体、响应体、耗时一目了然。调试与排查问题更高效。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       NEW FEATURES
+  ═══════════════════════════════════════ -->
+  <section class="features" id="features">
+    <div class="features-header reveal">
+      <div class="section-label">V3.0 新特性</div>
+      <h2 class="section-title">更强大，更易用</h2>
+      <p class="section-desc">全新升级的 V3.0 版本，带来图生图、风格模板、AI 辅助等重磅功能。</p>
+    </div>
+
+    <div class="features-grid reveal">
+      <div class="feature-card">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <h3>图生图编辑</h3>
+        <p>上传现有图片，通过提示词对其进行编辑、改造或扩展。支持多张图片同时处理，可选蒙版实现局部重绘，让创意在已有素材上自由延伸。</p>
+        <span class="feature-tag">NEW V3.0</span>
+      </div>
+      <div class="feature-card">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        <h3>风格模板系统</h3>
+        <p>内置丰富的结构化提示词模板，按分类组织。一键套用专业级提示词框架，快速生成高质量图片，告别提示词焦虑。</p>
+        <span class="feature-tag">NEW V3.0</span>
+      </div>
+      <div class="feature-card">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <h3>AI 辅助写提示词</h3>
+        <p>基于模板分类和具体场景，智能生成完整提示词。从分类选择到模板应用，三步获得专业提示词，大幅降低使用门槛。</p>
+        <span class="feature-tag">NEW V3.0</span>
+      </div>
+      <div class="feature-card">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <h3>余额实时查询</h3>
+        <p>连接 API 后自动显示账户余额、本月用量和剩余额度。随时掌握消费情况，合理规划生成任务。</p>
+        <span class="feature-tag">NEW V3.0</span>
       </div>
     </div>
   </section>
@@ -1628,7 +1721,7 @@
        FOOTER
   ═══════════════════════════════════════ -->
   <footer>
-    <div class="brand">觅图 <span>Image2</span> v2.1</div>
+    <div class="brand">觅图 <span>Image2</span> v3.0</div>
     <div class="meta">本地部署 · 隐私安全 · 永久使用</div>
   </footer>
 
